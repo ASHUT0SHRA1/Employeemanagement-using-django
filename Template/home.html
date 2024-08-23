@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <div class="container">
+        {% include 'navbar.html' %}
+        <h1>Welcome to home page</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto doloribus impedit atque commodi magni, maxime quae at iusto id, natus amet perferendis modi repellat itaque! Commodi non eius pariatur voluptates?</p>
+        <button>Home Page</button>
+
+        
+        {% comment %} comment  accessing dynamic value  {% endcomment %}
+      
+    </div>
+    <div>
+        <form action="/index/" method="POST">
+            {% csrf_token %}
+            <input type="text" name="check" />
+            <button>send</button>
+        </form>
+        <form action="/" method="POST">
+            {% csrf_token %}
+            <p>IsActive</p>
+            <input type="Radio" name="checkisActive"  value="True" />
+            <button>send</button>
+        </form>
+    </div>
+    <div>
+        {% if isActive %}
+        <div>
+            <h1>MY name is {{name}}</h1>
+            <h2>Today date is {{date}}</h2>
+            <h3>Student name is {{student_data.std_name}}</h3>
+            <h3>student collge name is {{student_data.std_college}}</h3>
+            <h3>student city {{student_data.std_city}}</h3>
+        </div>
+        <hr>
+        <div>
+            {% for p in list_of_program %}
+            <h4>
+                {{p}}
+            </h4>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
